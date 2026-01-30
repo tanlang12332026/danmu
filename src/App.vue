@@ -29,7 +29,6 @@ let dp = null
 let ok = ref('')
 
 const init_player = (my_url, danmus) => {
-  my_url = 'magnet:?xt=urn:btih:6ab25614c53b79df83c65bcda11aa56376feb04d'
   // --- 2. 初始化 DPlayer ---
   dp = new window.DPlayer({
     container: document.getElementById('dplayer'),
@@ -38,27 +37,8 @@ const init_player = (my_url, danmus) => {
     screenshot: false,
     video: {
       url: my_url,
-      type: my_url.endsWith('.m3u8') ? 'hls' : 'customWebTorrent',
-      customType: {
-        customWebTorrent: function (video, player) {
-          player.container.classList.add('dplayer-loading')
-          const client = new WebTorrent()
-          const torrentId = video.src
-          client.add(torrentId, (torrent) => {
-            console.log('oooo')
-            const file = torrent.files.find((file) => file.name.endsWith('.mkv'))
-            file.renderTo(
-              video,
-              {
-                autoplay: player.options.autoplay,
-              },
-              () => {
-                player.container.classList.remove('dplayer-loading')
-              },
-            )
-          })
-        },
-      },
+      type: my_url.endsWith('.m3u8') ? 'hls' : 'auto',
+
     },
     danmaku: {
       speedRate: 1,
