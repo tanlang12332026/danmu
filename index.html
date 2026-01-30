@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer"/>
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>弹幕播放器</title>
+    <!-- 先引样式，再引脚本（顺序不能乱） -->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer@latest/dist/DPlayer.min.css">-->
+    <script src="https://cdn.jsdelivr.net/npm/webtorrent/index.min.js"></script>
+    <!-- Hls.js 最小体积版（播放 m3u8 必需） -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.15/dist/hls.light.min.js"></script>
+
+    <!-- DPlayer 最小体积版 -->
+    <script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
+
+
+
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="/src/main.js"></script>
+</body>
+
+<style>
+    @media(min-width: 768px) {
+        html, body {
+            min-width: 500px;
+            overflow-x: auto;
+        }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,body, #app {
+        width: 100%;
+        min-height: 100%;
+        overflow-y: auto;
+        display: flex;
+    }
+
+    .dplayer-danmaku {
+        font-size: 18px !important;
+        bottom: 80%;
+        top: 10px;
+    }
+
+    .dplayer-danloading {
+        top: 80% !important;
+    }
+
+    .dplayer-comment {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+        width: 0.01px;
+    }
+</style>
+</html>

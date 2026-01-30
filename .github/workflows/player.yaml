@@ -1,0 +1,25 @@
+name: player
+on:
+  schedule:
+    - cron: '0 */5 * * *'
+  workflow_dispatch:
+
+
+concurrency:
+  group: production
+  cancel-in-progress: true  # 启动新的 Action 时，自动杀掉
+
+jobs:
+  player_4kvm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Checkout
+        uses: actions/checkout@v4
+
+      - name: 2. npm build
+        run: npm install && npm run build
+
+      - name: 3. cloudflare tunnel
+        run: docker run --network="host" cloudflare/cloudflared:latest tunnel --no-autoupdate run --token ${{secrets.PLAYER_CF_TOKEN}}
+
+

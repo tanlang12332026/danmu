@@ -1,0 +1,13 @@
+FROM node:20-slim
+
+# 安装必要工具：curl 和用于弹幕/网页运行的基础库
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+
+CMD npx vite
+
