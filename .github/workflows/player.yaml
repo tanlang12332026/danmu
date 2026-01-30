@@ -17,10 +17,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 2. npm build
-        run: sudo apt-get update && sudo apt-get install nodejs npm && rm -rf node_modules package-lock.json && npm install --include=optional && npm run build
+        run: rm -rf node_modules package-lock.json && npm install --include=optional && npm run build
 
       - name: 3. py
-        run: python main.py
+        run: pip install -r requirements.txt && python main.py
 
       - name: 3. cloudflare tunnel
         run: docker run --network="host" cloudflare/cloudflared:latest tunnel --no-autoupdate run --token ${{secrets.PLAYER_CF_TOKEN}}
